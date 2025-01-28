@@ -23,12 +23,13 @@ import br.com.opportune.repository.ClienteRepository;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/cliente")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ClienteController {
 	
 	@Autowired
 	private ClienteRepository clienteRepository;
+
 	
 	@GetMapping
 	public ResponseEntity<List<Cliente>> getAll(){

@@ -1,22 +1,17 @@
 package br.com.opportune.model;
 
 import java.time.LocalDate;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table (name = "tb_usuario")
-public class Usuario {
+@Table (name = "tb_empresa")
+public class Empresa {
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -24,6 +19,10 @@ public class Usuario {
 	
 	@NotNull (message = "O campo NOME é obrigatório.")
 	private String nome;
+
+	@NotNull(message = "O Atributo CPNJ é obrigatório!")
+	@Size(min = 14, max = 14, message = "O Atributo CPNJ deve ter o tamanho de 14 caracteres!")
+	private String cpnj;
 	
 	@NotNull(message = "O Atributo Usuário é Obrigatório!")
 	@Email(message = "O Atributo Usuário deve ser um email válido!")
@@ -33,23 +32,23 @@ public class Usuario {
 	@Size(min = 8, message = "A Senha deve ter no mínimo 8 caracteres")
 	private String senha;
 	
-	@Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
-	private String foto;
-	
 	@Column(nullable = false, updatable = false)
 	private LocalDate data;
-	
-	public Usuario(Long id, String nome,String email, String senha, String foto, LocalDate data) {
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "empresa", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("empresa")
+	private List<Plano> plano;
+
+	public Empresa(){}
+	public Empresa(Long id, String nome, String cpnj, String email, String senha, LocalDate data, List<Plano> plano) {
 		this.id = id;
 		this.nome = nome;
+		this.cpnj = cpnj;
 		this.email = email;
 		this.senha = senha;
-		this.foto = foto;
 		this.data = data;
+		this.plano = plano;
 	}
-	
-	  public Usuario() {
-	    }
 
 	public Long getId() {
 		return id;
@@ -65,6 +64,14 @@ public class Usuario {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getCpnj() {
+		return cpnj;
+	}
+
+	public void setCpnj(String cpnj) {
+		this.cpnj = cpnj;
 	}
 
 	public String getEmail() {
@@ -83,14 +90,6 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public String getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
-
 	public LocalDate getData() {
 		return data;
 	}
@@ -98,11 +97,17 @@ public class Usuario {
 	public void setData(LocalDate data) {
 		this.data = data;
 	}
-	
+
+	public List<Plano> getPlano() {
+		return plano;
+	}
+
+	public void setPlano(List<Plano> plano) {
+		this.plano = plano;
+	}
+
 	@PrePersist
     protected void onCreate() {
         this.data = LocalDate.now();
     }
-	
-	
 }

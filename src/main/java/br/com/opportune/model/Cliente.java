@@ -12,16 +12,13 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-
 import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 //import io.swagger.v3.oas.annotations.media.Schema;
 
-
 @Entity
-@Table(name ="tb_clientes")
+@Table(name ="tb_cliente")
 public class Cliente {
 
 	@Id
@@ -32,23 +29,30 @@ public class Cliente {
 	private String nome;
 	
 	@NotBlank(message= "O atributo cnpj/cpf é Obrigatório")
-	@Size(min= 11, max = 14)
-	private String cnpjCpf;
+	@Size(min= 11, max = 11)
+	private String cpf;
 	
 	@NotNull(message = "O atributo telefone é Obrigatório!")
 	private String tel;
 	
 	@NotNull(message = "O atributo endereço é Obrigatório!")
 	private String endereco;
+
+	@NotBlank(message = "O atributo foto é Obrigatório!")
+	private String foto;
 	
 	//@Schema(example = "email@email.com.br")
 	@NotNull(message = "O atributo email é obrigatório")
 	@Email(message = "O atributo email deve ser um email válido")
 	private String email;
+
+	@NotBlank(message = "O Atributo Senha é Obrigatório!")
+	@Size(min = 8, message = "A Senha deve ter no mínimo 8 caracteres")
+	private String senha;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("cliente")
-	private List<Oportunidade> oportunidade;
+	private List<Plano> plano;
 
 	public Long getId() {
 		return id;
@@ -66,12 +70,12 @@ public class Cliente {
 		this.nome = nome;
 	}
 
-	public String getCnpjCpf() {
-		return cnpjCpf;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setCnpjCpf(String cnpjCpf) {
-		this.cnpjCpf = cnpjCpf;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public String getTel() {
@@ -90,6 +94,14 @@ public class Cliente {
 		this.endereco = endereco;
 	}
 
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -98,11 +110,19 @@ public class Cliente {
 		this.email = email;
 	}
 
-	public List<Oportunidade> getOportunidade() {
-		return oportunidade;
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setOportunidade(List<Oportunidade> oportunidade) {
-		this.oportunidade = oportunidade;
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public List<Plano> getPlano() {
+		return plano;
+	}
+
+	public void setPlano(List<Plano> plano) {
+		this.plano = plano;
 	}
 }

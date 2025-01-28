@@ -18,54 +18,54 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.opportune.model.Usuario;
-import br.com.opportune.repository.UsuarioRepository;
+import br.com.opportune.model.Empresa;
+import br.com.opportune.repository.EmpresaRepository;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/empresa")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class UsuarioController {
+public class EmpresaController {
 
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private EmpresaRepository empresaRepository;
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> getAll() {
-        return ResponseEntity.ok(usuarioRepository.findAll());
+    public ResponseEntity<List<Empresa>> getAll() {
+        return ResponseEntity.ok(empresaRepository.findAll());
     }
     
     @GetMapping("/{id}")
-   public ResponseEntity<Usuario> getById(@PathVariable Long id) {
-    	return usuarioRepository.findById(id)
+   public ResponseEntity<Empresa> getById(@PathVariable Long id) {
+    	return empresaRepository.findById(id)
                 .map(resposta -> ResponseEntity.ok(resposta))
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     	
     }
     
     @PostMapping("/cadastrar")
-    public ResponseEntity<Usuario> post(@Valid @RequestBody Usuario usuario) {
+    public ResponseEntity<Empresa> post(@Valid @RequestBody Empresa empresa) {
         return ResponseEntity.status(HttpStatus.CREATED)
-        		.body(usuarioRepository.save(usuario));
+        		.body(empresaRepository.save(empresa));
     }
     
     @PutMapping("/atualizar")
-    public ResponseEntity<Usuario> put(@Valid @RequestBody Usuario usuario) {
-        return usuarioRepository.findById(usuario.getId())
+    public ResponseEntity<Empresa> put(@Valid @RequestBody Empresa empresa) {
+        return empresaRepository.findById(empresa.getId())
                 .map(resposta -> ResponseEntity.status(HttpStatus.OK)
-                		.body(usuarioRepository.save(usuario)))
+                		.body(empresaRepository.save(empresa)))
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
     
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        Optional<Usuario> usuario = usuarioRepository.findById(id);
+        Optional<Empresa> usuario = empresaRepository.findById(id);
 
         if (usuario.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado!");
         }   
-        usuarioRepository.deleteById(id);
+        empresaRepository.deleteById(id);
     }
     
     

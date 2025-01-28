@@ -18,52 +18,52 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.opportune.model.Oportunidade;
-import br.com.opportune.repository.OportunidadeRepository;
+import br.com.opportune.model.Plano;
+import br.com.opportune.repository.PlanoRepository;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/oportunidades")
+@RequestMapping("/plano")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class OportunidadeController {
+public class PlanoController {
 	
 	@Autowired
-	private OportunidadeRepository oportunidadeRepository;
+	private PlanoRepository planoRepository;
 	
 	@GetMapping
-	public ResponseEntity<List<Oportunidade>> getAll(){
-		return ResponseEntity.ok(oportunidadeRepository.findAll());
+	public ResponseEntity<List<Plano>> getAll(){
+		return ResponseEntity.ok(planoRepository.findAll());
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Oportunidade> getById(@PathVariable Long id){
-		return oportunidadeRepository.findById(id)
+	public ResponseEntity<Plano> getById(@PathVariable Long id){
+		return planoRepository.findById(id)
 				.map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 	
 	@PostMapping
-	public ResponseEntity<Oportunidade> post(@Valid @RequestBody Oportunidade oportunidade){
+	public ResponseEntity<Plano> post(@Valid @RequestBody Plano plano){
 		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(oportunidadeRepository.save(oportunidade));
+				.body(planoRepository.save(plano));
 	}
 	
 	@PutMapping
-	public ResponseEntity<Oportunidade> put(@Valid @RequestBody Oportunidade oportunidade){
-		return oportunidadeRepository.findById(oportunidade.getId())
+	public ResponseEntity<Plano> put(@Valid @RequestBody Plano plano){
+		return planoRepository.findById(plano.getId())
 				.map(resp -> ResponseEntity.status(HttpStatus.OK)
-						.body(oportunidadeRepository.save(oportunidade)))
+						.body(planoRepository.save(plano)))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		Optional<Oportunidade> oportunidade = oportunidadeRepository.findById(id);
+		Optional<Plano> oportunidade = planoRepository.findById(id);
 		
 		if(oportunidade.isEmpty())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		
-		oportunidadeRepository.deleteById(id);
+		planoRepository.deleteById(id);
 	}
 }

@@ -2,35 +2,34 @@ package br.com.opportune.model;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.*;
 import org.hibernate.annotations.UpdateTimestamp;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "tb_oportunidades")
-public class Oportunidade {
+@Table(name = "tb_plano")
+public class Plano {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@NotBlank(message = "O atributo nome é Obrigatório!")
+	@Size (min = 5, max = 100, message = "O atributo deve ter no mínimo 05 e no máximo 100 caracteres")
+	private String nome;
 	
 	@NotBlank(message = "O atributo descrição é Obrigatório!")
 	@Size (min = 5, max = 100, message = "O atributo deve ter no mínimo 05 e no máximo 100 caracteres")
 	private String descricao;
 	
-	@NotBlank (message = "O atributo status é Obrigatório!")
-	private String status;
+	@NotNull(message = "O atributo status é obrigatório!")
+	private boolean status;
 	
 	@Min(value = 0, message = "O preço não pode ser negativo.")
     @Max(value = 500000, message = "O preço não pode ser superior a 500.000.")
@@ -39,12 +38,12 @@ public class Oportunidade {
 	@UpdateTimestamp
 	private LocalDate data;
 	
-	/*@ManyToOne
-	@JsonIgnoreProperties("oportunidade")
-	private Usuario usuario; */
+	@ManyToOne
+	@JsonIgnoreProperties("plano")
+	private Empresa empresa;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("oportunidade")
+	@JsonIgnoreProperties("plano")
 	private Cliente cliente;
 
 	public Long getId() {
@@ -55,6 +54,14 @@ public class Oportunidade {
 		this.id = id;
 	}
 
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 	public String getDescricao() {
 		return descricao;
 	}
@@ -63,11 +70,11 @@ public class Oportunidade {
 		this.descricao = descricao;
 	}
 
-	public String getStatus() {
+	public boolean isStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 
@@ -87,13 +94,13 @@ public class Oportunidade {
 		this.data = data;
 	}
 
-/*	public Usuario getUsuario() {
-		return usuario;
+	public Empresa getEmpresa() {
+		return empresa;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	} */
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
 
 	public Cliente getCliente() {
 		return cliente;
