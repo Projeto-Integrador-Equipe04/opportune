@@ -3,6 +3,8 @@ package br.com.opportune.controller;
 import java.util.List;
 import java.util.Optional;
 
+import br.com.opportune.model.EmpresaLogin;
+import br.com.opportune.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,9 @@ public class EmpresaController {
 	@Autowired
 	private EmpresaRepository empresaRepository;
 
+    @Autowired
+    private EmpresaService empresaService;
+
     @GetMapping
     public ResponseEntity<List<Empresa>> getAll() {
         return ResponseEntity.ok(empresaRepository.findAll());
@@ -44,11 +49,20 @@ public class EmpresaController {
     }
     
     @PostMapping("/cadastrar")
-    public ResponseEntity<Empresa> post(@Valid @RequestBody Empresa empresa) {
+    public ResponseEntity<Optional<Empresa>> post(@Valid @RequestBody Empresa empresa) {
         return ResponseEntity.status(HttpStatus.CREATED)
-        		.body(empresaRepository.save(empresa));
+        		.body(empresaService.cadastrarUsuario(empresa));
     }
-    
+
+    @PostMapping("/logar")
+    public ResponseEntity<EmpresaLogin> autenticarEmpresa(@RequestBody Optional<EmpresaLogin> empresaLogin){
+
+        return empresaService.autenticarUsuario(empresaLogin)
+                .map(resposta -> ResponseEntity.status(HttpStatus.OK).body(resposta))
+                .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+    }
+
+
     @PutMapping("/atualizar")
     public ResponseEntity<Empresa> put(@Valid @RequestBody Empresa empresa) {
         return empresaRepository.findById(empresa.getId())
