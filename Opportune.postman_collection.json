@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "335aff58-8042-45ea-9686-99f894924c8c",
-		"name": "Opportune",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_postman_id": "36c14a90-f722-4762-b5db-e8ac7d169394",
+		"name": "Opportune Render",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "26463302"
 	},
 	"item": [
@@ -42,25 +42,32 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"nome\": \"3 Usuário\",\n    \"cpnj\": \"12345678912345\",\n\t\"email\": \"user123@example.com\",\n\t\"senha\": \"01234567\",\n\t\"foto\": \"\"\n}",
+							"raw": "{\n\t\"nome\": \"3 Usuário\",\n    \"cpnj\": \"12345678912345\",\n\t\"email\": \"user123@example.com\",\n\t\"senha\": \"01234567\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8080/empresa/cadastrar",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"empresa",
-								"cadastrar"
-							]
-						}
+						"url": "https://opportune-wuxl.onrender.com/empresa/cadastrar"
+					},
+					"response": []
+				},
+				{
+					"name": "Logar empresa",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"user123@example.com\",\r\n    \"senha\": \"01234567\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://opportune-wuxl.onrender.com/empresa/logar"
 					},
 					"response": []
 				},
@@ -104,18 +111,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8080/empresa/atualizar",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"empresa",
-								"atualizar"
-							]
-						}
+						"url": "https://opportune-wuxl.onrender.com/empresa/atualizar"
 					},
 					"response": []
 				},
@@ -146,48 +142,7 @@
 								"value": "insomnia/10.3.0"
 							}
 						],
-						"url": {
-							"raw": "http://localhost:8080/empresa/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"empresa",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Autenticar empresa",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": []
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"followRedirects": true,
-						"disableUrlEncoding": false,
-						"disableCookies": false
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "User-Agent",
-								"value": "insomnia/10.3.0"
-							}
-						],
-						"url": {
-							"raw": ""
-						}
+						"url": "https://opportune-wuxl.onrender.com/empresa/2"
 					},
 					"response": []
 				},
@@ -218,18 +173,7 @@
 								"value": "insomnia/10.3.0"
 							}
 						],
-						"url": {
-							"raw": "http://localhost:8080/empresa/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"empresa",
-								"1"
-							]
-						}
+						"url": "https://opportune-wuxl.onrender.com/empresa/1"
 					},
 					"response": []
 				},
@@ -253,258 +197,11 @@
 						"disableCookies": false
 					},
 					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "User-Agent",
-								"value": "insomnia/10.3.0"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/empresa",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"empresa"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Plano",
-			"item": [
-				{
-					"name": "Cadastrar Plano",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"followRedirects": true,
-						"disableUrlEncoding": false,
-						"disableCookies": false
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "User-Agent",
-								"value": "insomnia/10.3.0"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"nome\": \"Plano basico\",\n  \"descricao\": \"Oportunidade de venda de imóvel Grande\",\n  \"status\": 0,\n  \"valor\": 10000,\n  \"data\": \"2025-01-28\",\n  \"empresa\": {\n    \"id\": 1\n  },\n  \"cliente\": {\n    \"id\": 1\n  }\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/plano",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"plano"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Atualizar Plano",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"followRedirects": true,
-						"disableUrlEncoding": false,
-						"disableCookies": false
-					},
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "User-Agent",
-								"value": "insomnia/10.3.0"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"id\": 1,\n  \"nome\": \"Plano basico\",\n  \"descricao\": \"Oportunidade de venda de imóvel Grande\",\n  \"status\": 1,\n  \"valor\": 10000,\n  \"data\": \"2025-01-28\",\n  \"empresa\": {\n    \"id\": 1\n  },\n  \"cliente\": {\n    \"id\": 1\n  }\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/plano",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"plano"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Deletar plano por id",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"followRedirects": true,
-						"disableUrlEncoding": false,
-						"disableCookies": false
-					},
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "User-Agent",
-								"value": "insomnia/10.3.0"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/plano/3",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"plano",
-								"3"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Listar plano por ID",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"followRedirects": true,
-						"disableUrlEncoding": false,
-						"disableCookies": false
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "User-Agent",
-								"value": "insomnia/10.3.0"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8080/plano/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"plano",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Listar planos",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"followRedirects": true,
-						"disableUrlEncoding": false,
-						"disableCookies": false
-					},
-					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "username",
-									"value": "user",
-									"type": "string"
-								},
-								{
-									"key": "password",
-									"value": "e3c08b18-9997-4e44-bb12-efdf8fbfe41d",
-									"type": "string"
-								}
-							]
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTIzQGV4YW1wbGUuY29tIiwiaWF0IjoxNzM4MTU5ODM2LCJleHAiOjE3MzgxNjM0MzZ9.WeR2Y6qYc-9xSVLtzzILEXQYJzJhfxjuSDg2p9wG0ow"
+							}
 						},
 						"method": "GET",
 						"header": [
@@ -513,17 +210,7 @@
 								"value": "insomnia/10.3.0"
 							}
 						],
-						"url": {
-							"raw": "http://localhost:8080/plano",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"plano"
-							]
-						}
+						"url": "https://opportune-wuxl.onrender.com/empresa"
 					},
 					"response": []
 				}
@@ -552,6 +239,12 @@
 						"disableCookies": false
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTIzQGV4YW1wbGUuY29tIiwiaWF0IjoxNzM4MTU5ODM2LCJleHAiOjE3MzgxNjM0MzZ9.WeR2Y6qYc-9xSVLtzzILEXQYJzJhfxjuSDg2p9wG0ow"
+							}
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -572,17 +265,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8080/cliente",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cliente"
-							]
-						}
+						"url": "https://opportune-wuxl.onrender.com/cliente"
 					},
 					"response": []
 				},
@@ -613,18 +296,7 @@
 								"value": "insomnia/10.3.0"
 							}
 						],
-						"url": {
-							"raw": "http://localhost:8080/cliente/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cliente",
-								"2"
-							]
-						}
+						"url": "https://opportune-wuxl.onrender.com/cliente/2"
 					},
 					"response": []
 				},
@@ -668,17 +340,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8080/cliente",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cliente"
-							]
-						}
+						"url": "https://opportune-wuxl.onrender.com/cliente"
 					},
 					"response": []
 				},
@@ -709,19 +371,7 @@
 								"value": "insomnia/10.3.0"
 							}
 						],
-						"url": {
-							"raw": "http://localhost:8080/cliente/nome/Joao",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cliente",
-								"nome",
-								"Joao"
-							]
-						}
+						"url": "https://opportune-wuxl.onrender.com/cliente/nome/Joao"
 					},
 					"response": []
 				},
@@ -752,18 +402,7 @@
 								"value": "insomnia/10.3.0"
 							}
 						],
-						"url": {
-							"raw": "http://localhost:8080/cliente/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cliente",
-								"1"
-							]
-						}
+						"url": "https://opportune-wuxl.onrender.com/cliente/1"
 					},
 					"response": []
 				},
@@ -794,17 +433,229 @@
 								"value": "insomnia/10.3.0"
 							}
 						],
-						"url": {
-							"raw": "http://localhost:8080/cliente",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cliente"
-							]
+						"url": "https://opportune-wuxl.onrender.com/cliente"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Plano",
+			"item": [
+				{
+					"name": "Cadastrar Plano",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
 						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTIzQGV4YW1wbGUuY29tIiwiaWF0IjoxNzM4MTU5ODM2LCJleHAiOjE3MzgxNjM0MzZ9.WeR2Y6qYc-9xSVLtzzILEXQYJzJhfxjuSDg2p9wG0ow"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/10.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"Plano basico\",\n  \"descricao\": \"Oportunidade de venda de imóvel Grande\",\n  \"status\": 0,\n  \"valor\": 10000,\n  \"data\": \"2025-01-28\",\n  \"empresa\": {\n    \"id\": 1\n  },\n  \"cliente\": {\n    \"id\": 1\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://opportune-wuxl.onrender.com/plano"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Plano",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/10.3.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1,\n  \"nome\": \"Plano basico\",\n  \"descricao\": \"Oportunidade de venda de imóvel Grande\",\n  \"status\": 1,\n  \"valor\": 10000,\n  \"data\": \"2025-01-28\",\n  \"empresa\": {\n    \"id\": 1\n  },\n  \"cliente\": {\n    \"id\": 1\n  }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://opportune-wuxl.onrender.com/plano"
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar status do plano",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTIzQGV4YW1wbGUuY29tIiwiaWF0IjoxNzM4MTU5ODM2LCJleHAiOjE3MzgxNjM0MzZ9.WeR2Y6qYc-9xSVLtzzILEXQYJzJhfxjuSDg2p9wG0ow"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"nome\": \"Plano basico\",\r\n  \"descricao\": \"Oportunidade de venda de imóvel Grande\",\r\n  \"status\": 1,\r\n  \"valor\": 10000,\r\n  \"data\": \"2025-01-28\",\r\n  \"empresa\": {\r\n    \"id\": 1\r\n  },\r\n  \"cliente\": {\r\n    \"id\": 1\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://opportune-wuxl.onrender.com/plano/status"
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar plano por id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/10.3.0"
+							}
+						],
+						"url": "https://opportune-wuxl.onrender.com/plano/3"
+					},
+					"response": []
+				},
+				{
+					"name": "Listar plano por ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/10.3.0"
+							}
+						],
+						"url": "https://opportune-wuxl.onrender.com/plano/2"
+					},
+					"response": []
+				},
+				{
+					"name": "Listar planos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTIzQGV4YW1wbGUuY29tIiwiaWF0IjoxNzM4MTU5ODM2LCJleHAiOjE3MzgxNjM0MzZ9.WeR2Y6qYc-9xSVLtzzILEXQYJzJhfxjuSDg2p9wG0ow"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/10.3.0"
+							}
+						],
+						"url": "https://opportune-wuxl.onrender.com/plano"
 					},
 					"response": []
 				}
