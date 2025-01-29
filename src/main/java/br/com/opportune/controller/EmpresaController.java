@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import br.com.opportune.model.EmpresaLogin;
 import br.com.opportune.service.EmpresaService;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
