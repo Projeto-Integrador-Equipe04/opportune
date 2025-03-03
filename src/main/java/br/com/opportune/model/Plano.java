@@ -2,6 +2,7 @@ package br.com.opportune.model;
 
 import java.time.LocalDate;
 
+import br.com.opportune.model.types.Status;
 import jakarta.validation.constraints.*;
 import org.hibernate.annotations.UpdateTimestamp;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -29,7 +30,7 @@ public class Plano {
 	private String descricao;
 	
 	@NotNull(message = "O atributo status é obrigatório!")
-	private boolean status;
+	private Status status;
 	
 	@Min(value = 0, message = "O preço não pode ser negativo.")
     @Max(value = 500000, message = "O preço não pode ser superior a 500.000.")
@@ -70,11 +71,11 @@ public class Plano {
 		this.descricao = descricao;
 	}
 
-	public boolean isStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 
