@@ -9,10 +9,10 @@ public class EmpresaLogin {
 	private String nome;
 	private String email;
 	private String senha;
-	private List<Plano> plano;
 	private LocalDate data;
 	private String cnpj;
 	private String token;
+	private List<Plano> plano;
 	public Long getId() {
 		return id;
 	}

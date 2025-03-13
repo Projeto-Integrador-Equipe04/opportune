@@ -22,7 +22,7 @@ public class Empresa {
 
 	@NotNull(message = "O Atributo CPNJ é obrigatório!")
 	@Size(min = 14, max = 14, message = "O Atributo CPNJ deve ter o tamanho de 14 caracteres!")
-	private String cpnj;
+	private String cnpj;
 	
 	@NotNull(message = "O Atributo Usuário é Obrigatório!")
 	@Email(message = "O Atributo Usuário deve ser um email válido!")
@@ -40,10 +40,10 @@ public class Empresa {
 	private List<Plano> plano;
 
 	public Empresa(){}
-	public Empresa(Long id, String nome, String cpnj, String email, String senha, LocalDate data, List<Plano> plano) {
+	public Empresa(Long id, String nome, String cnpj, String email, String senha, LocalDate data, List<Plano> plano) {
 		this.id = id;
 		this.nome = nome;
-		this.cpnj = cpnj;
+		this.cnpj = cnpj;
 		this.email = email;
 		this.senha = senha;
 		this.data = data;
@@ -66,12 +66,12 @@ public class Empresa {
 		this.nome = nome;
 	}
 
-	public String getCpnj() {
-		return cpnj;
+	public String getCnpj() {
+		return cnpj;
 	}
 
-	public void setCpnj(String cpnj) {
-		this.cpnj = cpnj;
+	public void setCnpj(String cpnj) {
+		this.cnpj = cpnj;
 	}
 
 	public String getEmail() {
