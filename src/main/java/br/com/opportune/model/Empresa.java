@@ -22,7 +22,7 @@ public class Empresa {
 
 	@NotNull(message = "O Atributo CPNJ é obrigatório!")
 	@Size(min = 14, max = 14, message = "O Atributo CPNJ deve ter o tamanho de 14 caracteres!")
-	private String cnpj;
+	private String cpnj;
 	
 	@NotNull(message = "O Atributo Usuário é Obrigatório!")
 	@Email(message = "O Atributo Usuário deve ser um email válido!")
@@ -35,24 +35,19 @@ public class Empresa {
 	@Column(nullable = false, updatable = false)
 	private LocalDate data;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "empresa")
-	@JsonIgnoreProperties({"empresa", "plano"})
-	private List<Cliente> cliente;
-
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "empresa", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"empresa", "cliente"})
+	@JsonIgnoreProperties("empresa")
 	private List<Plano> plano;
 
-	public Empresa() {}
-	public Empresa(Long id, String nome, String cnpj, String email, String senha, LocalDate data, List<Cliente> cliente, List<Plano> plano) {
+	public Empresa(){}
+	public Empresa(Long id, String nome, String cpnj, String email, String senha, LocalDate data, List<Plano> plano) {
 		this.id = id;
 		this.nome = nome;
-		this.cnpj = cnpj;
+		this.cpnj = cpnj;
 		this.email = email;
 		this.senha = senha;
 		this.data = data;
-        this.cliente = cliente;
-        this.plano = plano;
+		this.plano = plano;
 	}
 
 	public Long getId() {
@@ -71,12 +66,12 @@ public class Empresa {
 		this.nome = nome;
 	}
 
-	public String getCnpj() {
-		return cnpj;
+	public String getCpnj() {
+		return cpnj;
 	}
 
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
+	public void setCpnj(String cpnj) {
+		this.cpnj = cpnj;
 	}
 
 	public String getEmail() {
@@ -101,14 +96,6 @@ public class Empresa {
 
 	public void setData(LocalDate data) {
 		this.data = data;
-	}
-
-	public List<Cliente> getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(List<Cliente> cliente) {
-		this.cliente = cliente;
 	}
 
 	public List<Plano> getPlano() {

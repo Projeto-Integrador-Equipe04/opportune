@@ -80,7 +80,7 @@ public class EmpresaService {
                 // Preenche o Objeto usuarioLogin com os dados encontrados 
 				empresaLogin.get().setId(empresa.get().getId());
 				empresaLogin.get().setNome(empresa.get().getNome());
-				empresaLogin.get().setCnpj(empresa.get().getCnpj());
+				empresaLogin.get().setCnpj(empresa.get().getCpnj());
 				empresaLogin.get().setPlano(empresa.get().getPlano());
 				empresaLogin.get().setData(empresa.get().getData());
 				empresaLogin.get().setToken(gerarToken(empresaLogin.get().getEmail()));
