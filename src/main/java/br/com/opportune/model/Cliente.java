@@ -54,6 +54,19 @@ public class Cliente {
 	@JsonIgnoreProperties("cliente")
 	private List<Plano> plano;
 
+	public Cliente(){}
+	public Cliente(Long id, String nome, String cpf, String tel, String endereco, String foto, String email, String senha, List<Plano> plano) {
+		this.id = id;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.tel = tel;
+		this.endereco = endereco;
+		this.foto = foto;
+		this.email = email;
+		this.senha = senha;
+		this.plano = plano;
+	}
+
 	public Long getId() {
 		return id;
 	}
